@@ -5,8 +5,10 @@ on: pull_request
 jobs:
   test:
     runs-on: ubuntu-latest
+    # ghを使う処理なのでtokenの設定が必須
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # permissionも必要
     permissions:
       contents: write
       pull-requests: write
