@@ -28,7 +28,9 @@ jobs:
         env:
           BRANCH: ${{ steps.exercise.outputs.branch }}
       - name: Teardown # テストの後始末
+        # どこで失敗してもteardownのstepを実行できるようにしている
         if: ${{ always() }}
+        # || trueはエラーの握りつぶし
         run: |
           gh pr close "${BRANCH}" || true
           git push origin "${BRANCH}" --delete || true
